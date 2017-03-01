@@ -1,0 +1,17 @@
+%section.row
+  .cell.cell--s.well.well--l
+
+    .label.mbm Create a New Author
+
+    .form.card.card--b
+      = simple_form_for @author, url: authors_path do | f |
+
+        %fieldset.form-field
+          = f.label :name, class: 'form-label label'
+          = f.input_field :name, placeholder: 'Name', class: 'form-input'
+
+        %fieldset.form-field
+          = f.label :email, class: 'form-label label'
+          = f.email_field :email, placeholder: 'Email', class:'form-input'
+
+        = f.submit 'Create Author', class: 'btn btn--a form-btn'

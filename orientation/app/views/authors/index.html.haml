@@ -1,0 +1,20 @@
+%section.row
+  .cell.well.well--l
+
+    %h1 #{ @authors.count } Authors
+
+    .js-search
+
+      .g
+        .g-b.g-b--m--1of2
+          .form.form--inline.mbm
+            = form_tag authors_path, method: :get, remote: true, class: 'form js-search-form' do
+              = search_field_tag :search, params[:search],
+                class: 'js-search-input form-input',
+                placeholder: 'Search authors by name or shtick',
+                data: { shortcut: 's' }
+
+      .g.mbm.js-search-results
+        = render partial: 'authors/author', collection: @authors
+
+    = link_to 'New Author', new_author_path, class: 'btn btn--b'

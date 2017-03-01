@@ -1,0 +1,67 @@
+// *************************************
+//
+//   Guide
+//   -> A guide card
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .guide
+//   .guide-content
+//     .guide-title
+//     .guide-meta
+//
+// *************************************
+
+.guide
+  animation: guide-slide 5s infinite linear
+  animation-play-state: paused
+  background-image: image-url('bg-pattern.svg')
+  background-position: 0 0
+  background-repeat: repeat
+  letter-spacing: 0.05em
+  min-height: 5em
+  position: relative
+  text-shadow: rgba(0,0,0,.4) 0 0 0.5em
+
+  +state
+    animation-play-state: running
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Content ----- //
+
+.guide-content
+  left: 50%
+  position: absolute
+  text-align: center
+  top: 50%
+  transform: translate(-50%, -50%)
+  width: 90%
+
+// ----- Meta ----- //
+
+.guide-meta
+  color: rgba($c-text-invert, 0.45)
+  font-weight: normal
+  margin-bottom: 0
+
+// ----- Title ----- //
+
+.guide-title
+  color: $c-text-invert
+  font-size: 160%
+  margin-bottom: 0
+
+// -------------------------------------
+//   Animation
+// -------------------------------------
+
+@keyframes guide-slide
+  from
+    background-position: 0 0
+  to
+    background-position: 320px 0

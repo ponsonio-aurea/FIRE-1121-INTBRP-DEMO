@@ -1,0 +1,17 @@
+/ TODO: Move conditional presentation to proper location
+- if tag.articles.size > 5
+  .split.mbs
+    .split-cell
+      %h1.h2.dib= tag.name.titleize
+    .split-cell
+      = link_to "View All", tag_path(tag), class: 'tss'
+- else
+  .mbs
+    %h1.h2.dib= tag.name.titleize
+
+%div.card.card--b.mbm
+  %ul.list
+    / TODO: Only display the latest five (or pinned) articles
+    - articles.take(5).each do |article|
+      %li.list-item.mbxs
+        = link_to article.title, article, class: 'tss'

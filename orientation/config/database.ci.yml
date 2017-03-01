@@ -1,0 +1,4 @@
+test:
+  adapter: postgresql
+  database: orientation_test
+  username: postgres

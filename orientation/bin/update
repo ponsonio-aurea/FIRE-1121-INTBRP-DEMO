@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+require 'pathname'
+require 'fileutils'
+include FileUtils
+
+# path to your application root.
+APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
+
+def system!(*args)
+  system(*args) || abort("\n== Command #{args} failed ==")
+end
+
+chdir APP_ROOT do
+  # This script is a way to update your development environment automatically.
+  # Add necessary update steps to this file.
+  if %x[ git remote -v | grep github.com/orientation/orientation ].empty?
+    puts "== Adding Orientation upstream git remote =="
+    system 'git remote add upstream https://github.com/orientation/orientation.git'
+  end
+
+  puts "== Running git rebase upstream/master to update Orientation =="
+  system 'git fetch upstream'
+  system 'git rebase upstream/master'
+
+  puts '== Installing dependencies =='
+  system 'gem install bundler --conservative'
+  system 'bundle check' or system! 'bundle install'
+  system 'npm install'
+
+  puts "\n== Updating database =="
+  system! 'bin/rails db:migrate'
+
+  puts "\n== Removing old logs and tempfiles =="
+  system! 'bin/rails log:clear tmp:clear'
+
+  puts "\n== Restarting application server =="
+  system! 'bin/rails restart'
+end

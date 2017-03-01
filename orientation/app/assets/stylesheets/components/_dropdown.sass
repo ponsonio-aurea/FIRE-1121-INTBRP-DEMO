@@ -1,0 +1,96 @@
+// *************************************
+//
+//   Dropdown
+//   -> Consecutive menu items
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .dropdown[e](active)
+//   %ul.dropdown-menu
+//     %li.dropdown-item
+//     %li.dropdown-item
+//       %a.dropdown-item-link
+//
+// *************************************
+
+.dropdown
+  position: relative
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Position ----- //
+
+// East
+
+.dropdown--e
+
+  .dropdown-menu
+    left: auto
+    right: 0
+
+// Flush
+
+.dropdown--f
+
+  .dropdown-menu
+    margin-top: 0
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+// ----- Active ----- //
+
+.dropdown.is-active
+  .dropdown-menu
+    display: block
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Item ----- //
+
+.dropdown-item
+  color: $c-subdue
+  margin: 0
+
+  &:not(:first-child)
+    border-top: $dropdown-border
+
+  +state
+    background: $c-background
+    color: $c-subdue
+
+// Link
+
+.dropdown-item-link
+  color: inherit
+  display: block
+  padding: $b-space-s
+
+  +state
+    color: inherit
+
+.dropdown-item-link--xs
+  padding: $b-space-xs
+
+// ----- Menu ----- //
+
+.dropdown-menu
+  @extend .lr
+  background: $c-background-invert
+  border-radius: $b-borderRadius
+  border: $dropdown-border
+  box-shadow: $b-boxShadow
+  display: none
+  left: 0
+  margin-top: $b-space-s
+  min-width: em(140px)
+  position: absolute
+  top: 100%
+  z-index: 1

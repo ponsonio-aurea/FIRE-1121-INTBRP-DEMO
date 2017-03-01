@@ -1,0 +1,127 @@
+// *************************************
+//
+//   Markdown
+//   -> Namespaced Markdown styles
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .markdown
+//
+//   / ...
+//
+// *************************************
+
+.markdown
+
+  // ----- Block Content ----- //
+
+  // Blockquote
+
+  blockquote
+    border-left: 4px solid $c-border
+    margin: $b-space 0
+    padding-left: $b-space
+
+  // Lists
+
+  ol, ul
+    padding-left: $b-space
+
+    ol, ul
+      margin-top: $b-space-s
+      margin-bottom: 0
+
+    li
+      margin-bottom: $b-space-s
+
+  // Headings
+
+  h1, h2, h3, h4, h5, h6
+    font-family: $b-fontFamily
+    font-weight: bold
+    margin-bottom: $b-space-s
+    position: relative
+
+    +state
+
+      .anchor
+        display: block
+
+    .anchor
+      color: $c-subdue
+      display: none
+      font-family: $b-fontFamily-heading
+      font-style: normal
+      font-weight: normal
+      padding-right: 0.1em
+      position: absolute
+      right: 100%
+      top: 0
+
+      &::before
+        content: '#'
+
+  h1
+    font-family: $b-fontFamily-heading
+    margin-bottom: $b-space-xs
+
+  h2
+    font-size: $b-fontSize-l
+
+  h3
+    color: $c-subdue
+    font-size: 120%
+    font-weight: normal
+
+  h4
+    font-size: $b-fontSize
+
+  h5
+    font-size: $b-fontSize-s
+
+  h6
+    color: $c-subdue
+    font-size: $b-fontSize
+    font-style: italic
+    font-weight: normal
+
+  // Table
+
+  table
+    background: $c-background-invert
+    font-size: $b-fontSize-s
+    width: 100%
+
+  thead
+    color: $c-text-heading
+
+    tr
+      background: $c-background
+
+  tr
+    &:nth-of-type(even)
+      background: $c-background
+
+  td,
+  th
+    padding: $b-space-s $b-space-xs
+    border: 1px solid $c-border
+
+  // ----- Inline Content ----- //
+
+  // Links
+
+  a
+    &[href^='http']
+      word-wrap: break-word // NOTE: Added to break URLs entered in content
+
+  // Code
+
+  code
+    background: darken($c-background, 3%)
+    border-radius: $b-borderRadius
+    display: inline-block
+    padding-left: $b-space-xs
+    padding-right: $b-space-xs
